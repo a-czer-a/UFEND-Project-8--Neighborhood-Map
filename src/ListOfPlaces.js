@@ -8,8 +8,8 @@ class ListOfPlaces extends Component {
                     <input id="filter-input" type="text" placeholder="Filter"/>
                     {places && (
                         <ul>
-                            {places.map((restaurant) => 
-                                <li key={restaurant.res_id} className="place">Nazwa {restaurant.name}</li>
+                            {places.map((place) => 
+                                <li key={place.restaurant.res_id} className="place">{place.restaurant.name}{place.restaurant.location.latitude}</li>
                             )}
                         </ul>
                     )}

@@ -14,7 +14,8 @@ class App extends Component {
 
   state = {
     menuActive: false,
-    places: []
+    places: [],
+    markers: []
   }
 
   componentDidMount() {
@@ -38,11 +39,18 @@ class App extends Component {
     return response.json();
   }).then(returnedPlaces => {
     console.log(returnedPlaces.restaurants)
-    this.setState({
-      places: returnedPlaces.restaurants
-    })
+    const places = returnedPlaces.restaurants
+    this.setState({places})
   })
 }
+
+  // getMarkers() {
+  //   const {places} = this.state
+  //   const lat = place.restaurant.location.latitude
+  //   const lng = place.restaurant.location.longitude
+  //   const marker = [lat, lng]
+  //   this.state.markers.push(marker)
+  // }
 
   render() {
     return (
@@ -64,6 +72,7 @@ class App extends Component {
                 containerElement={<div style={{ height: `770px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
+                places={this.state.places}
             />
         </div>
       </div>
