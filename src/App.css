@@ -10,33 +10,33 @@
 .app-header {
   display: flex;
   flex-direction: row;
-  background-color: #ff7a8a;
+  background-color: #0278ae;
   height: 60px;
   padding: 20px;
-  color: #062743;
+  color: #fff;
 }
 
 .app-title {
-  margin-left: 20px;
+  padding-left: 40px;
   font-size: 1.5em;
-  flex-grow: 2;
+  /* flex-grow: 2; */
+  float: right;
+}
+.main-content {
+  display: block;
 }
 
-.places-list-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #ff7a8a;
-  height: 100vh;
-  padding: 10px;
-  width: 300px;
-}
-
-.placec-list-container button {
-  align-content: flex-end;
-}
 /* Hamburger menu */
 
+.button-container {
+  position: relative;
+  width: 35%;
+  float: left;
+}
+
 .hamburger {
+  position: absolute;
+  left: 0;
   padding: 15px 15px;
   display: inline-block;
   cursor: pointer;
@@ -48,7 +48,7 @@
   text-transform: none;
   background-color: transparent;
   border: 0;
-  margin: 0;
+  margin: 0 auto;
   overflow: visible; 
 }
   
@@ -61,19 +61,18 @@
   height: 24px;
   display: inline-block;
   position: relative; 
-  margin-right: 220px;
 }
 
 .hamburger-inner {
   display: block;
   top: 50%;
-  margin-top: -2px; 
+  margin-top: 2px; 
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 40px;
+    width: 30px;
     height: 4px;
-    background-color: #000;
+    background-color: #fff;
     border-radius: 4px;
     position: absolute;
     transition-property: transform;
@@ -87,11 +86,15 @@
 }
 
 .hamburger-inner::before {
-    top: -10px; 
+    top: -6px; 
 }
 
 .hamburger-inner::after {
-    bottom: -10px; 
+    bottom: -6px; 
+}
+
+.is-active {
+  margin-left: 65%;
 }
 
 .hamburger--arrow.is-active .hamburger-inner::before {
@@ -101,10 +104,24 @@
 .hamburger--arrow.is-active .hamburger-inner::after {
   transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1); 
 }
-/* .to-right {
-  margin-left: 250px;
-} */
 
-.hidden {
-  visibility: hidden;
+/* List of places */
+
+.places-list-container {
+  display: block;
+  /* flex-direction: column; */
+  background-color: #ffb6b9;
+  height: 100vh;
+  padding: 10px;
+  width: 30%;
+  transition: all 0.2s ease;
+  z-index: 100;
 }
+
+#filter-input {
+  width: 80%;
+  height: 15px;
+  margin-top: 20px;
+  padding: 5px;
+}
+

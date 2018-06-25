@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 
 class ListOfPlaces extends Component {
     render() {
-        // const {menuActive} = this.props
-
+        const {menuActive} = this.props
+        if (menuActive) {
             return (
                 <div className="places-list-container">
-                    {/* <button className="hamburger hamburger--arrow is-active" type="button">
-                        <span className="hamburger-box">
-                            <span className="hamburger-inner"></span>
-                        </span>
-                    </button>                     */}
-
-                    <input type="text" placeholder="Filter"/>
+                    <input id="filter-input" type="text" placeholder="Filter"/>
                 </div>
-
             )
-
-        }
+        } else {
+            return (
+                null
+            )
+        }     
+    }
 }
 
 export default ListOfPlaces
