@@ -9,7 +9,7 @@ class ListOfPlaces extends Component {
                     {places && (
                         <ul>
                             {places.map((place) => 
-                                <li key={place.restaurant.res_id} className="place">{place.restaurant.name}{place.restaurant.location.latitude}</li>
+                                <li key={place.restaurant.res_id} className="place">{place.restaurant.name}</li>
                             )}
                         </ul>
                     )}
