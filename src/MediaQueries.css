@@ -1,0 +1,5 @@
+@media screen and (max-width: 475px) {
+    .is-active {
+        margin-left: 0;
+      }
+}

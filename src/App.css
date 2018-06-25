@@ -27,6 +27,7 @@
 }
 .main-content {
   display: block;
+  height: 100vh;
 }
 
 /* Hamburger menu */
@@ -112,11 +113,9 @@
 
 .places-list-container {
   display: block;
-  /* flex-direction: column; */
   background-color: #61c0bf;
-  height: 100vh;
-  padding: 10px;
-  width: 250px;
+  height: 770px;
+  width: 270px;
   transition: all 0.2s ease;
   z-index: 100;
   position: absolute;
@@ -127,5 +126,16 @@
   height: 15px;
   margin-top: 20px;
   padding: 5px;
+}
+
+ul {
+  margin-top: 20px;
+  padding: 0;
+}
+.place {
+  list-style-type: none;
+  margin: 0;
+  padding: 8px;
+  color: #fff;
 }
 

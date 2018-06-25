@@ -6,13 +6,12 @@ class ListOfPlaces extends Component {
             return (
                 <div className="places-list-container">
                     <input id="filter-input" type="text" placeholder="Filter"/>
-                    {places}
                     {places && (
-                        <div>
-                            {places.map((place) => 
-                                <li key={place.id}>{place.name}</li>
+                        <ul>
+                            {places.map((restaurant) => 
+                                <li key={restaurant.res_id} className="place">Nazwa {restaurant.name}</li>
                             )}
-                        </div>
+                        </ul>
                     )}
                 </div>
             )

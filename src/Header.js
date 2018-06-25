@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
 class Header extends Component {
-    // state = {
-    //     menuActive: false
-    // }
-    
     componentDidMount() {
         this.setState({
             menuActive: false
@@ -13,9 +9,6 @@ class Header extends Component {
 
     toggleMenu() {
         this.props.handleMenuActivation()
-        // this.setState({
-        //     menuActive: !this.state.menuActive
-        // })
     }
     
     render() {

@@ -3,6 +3,7 @@ import Header from './Header'
 import ListOfPlaces from './ListOfPlaces'
 import Map from './Map' 
 import './App.css';
+import './MediaQueries.css'
 
 class App extends Component {
 
@@ -16,24 +17,31 @@ class App extends Component {
     places: []
   }
 
-handleMenuActivation() {
+  componentDidMount() {
+    this.getData()
+}
+
+  handleMenuActivation() {
   this.setState({
     menuActive: !this.state.menuActive
   })
-  console.log(this.state.menuActive)
-
-}
-componentDidMount() {
-fetch('https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Krak%C3%B3w&collection_id=child-friendly&sort=rating', {
-  headers: {
-    'Accept': 'application/json',
-    'user-key': '12444e5c0a0d7a10f6a562d71713c733'
   }
-})
-  .then(({results}) => 
-  this.setState({
-    places: results
-  }))
+
+  getData() {
+    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&collection_id=30', {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'user-key': '12444e5c0a0d7a10f6a562d71713c733'
+    }})
+  .then((response) => {
+    return response.json();
+  }).then(returnedPlaces => {
+    console.log(returnedPlaces.restaurants)
+    this.setState({
+      places: returnedPlaces.restaurants
+    })
+  })
 }
 
   render() {
@@ -53,7 +61,7 @@ fetch('https://developers.zomato.com/api/v2.1/search?entity_type=city&q=Krak%C3%
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100vh` }} />}
+                containerElement={<div style={{ height: `770px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
             />
