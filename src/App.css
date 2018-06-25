@@ -8,8 +8,8 @@
 } */
 
 .app-header {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
   background-color: #0278ae;
   height: 60px;
   padding: 20px;
@@ -17,10 +17,13 @@
 }
 
 .app-title {
-  padding-left: 40px;
-  font-size: 1.5em;
-  /* flex-grow: 2; */
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-size: 1.6em;
+  text-align: center;
   float: right;
+}
+.highlight {
+  color: #ffb6b9;
 }
 .main-content {
   display: block;
@@ -30,7 +33,7 @@
 
 .button-container {
   position: relative;
-  width: 35%;
+  width: 300px;
   float: left;
 }
 
@@ -110,12 +113,13 @@
 .places-list-container {
   display: block;
   /* flex-direction: column; */
-  background-color: #ffb6b9;
+  background-color: #61c0bf;
   height: 100vh;
   padding: 10px;
-  width: 30%;
+  width: 250px;
   transition: all 0.2s ease;
   z-index: 100;
+  position: absolute;
 }
 
 #filter-input {

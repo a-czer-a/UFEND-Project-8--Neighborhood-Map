@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 
 class ListOfPlaces extends Component {
     render() {
-        const {menuActive} = this.props
-        if (menuActive) {
+        const {places} = this.props
             return (
                 <div className="places-list-container">
                     <input id="filter-input" type="text" placeholder="Filter"/>
+                    {places}
+                    {places && (
+                        <div>
+                            {places.map((place) => 
+                                <li key={place.id}>{place.name}</li>
+                            )}
+                        </div>
+                    )}
                 </div>
             )
-        } else {
-            return (
-                null
-            )
-        }     
     }
 }
 

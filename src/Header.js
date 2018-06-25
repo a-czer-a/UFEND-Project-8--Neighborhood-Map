@@ -35,7 +35,7 @@ class Header extends Component {
                             </span>
                         </button> 
                     </div>
-                    <h1 className="app-title">Child-friendly restaurants in Cracow</h1>               
+                    <h1 className="app-title">Child-friendly restaurants <span className="highlight">in Cracow</span></h1>               
                 </header>
             )
 
