@@ -15,6 +15,7 @@ class App extends Component {
   state = {
     menuIsActive: false,
     places: [],
+    // filteredPlaces: [],
     infoWindowIsOpen: false,
     placeId: ''
   }
@@ -34,7 +35,6 @@ class App extends Component {
       infoWindowIsOpen: true,
       placeId: id
     })
-    console.log(this.state.infoWindowIsOpen)
   }
 
   handleInfoWindowClosing = () => {
@@ -79,7 +79,7 @@ class App extends Component {
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `100vh` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
                 places={this.state.places}

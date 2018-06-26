@@ -141,15 +141,15 @@ ul {
   margin: 0;
   padding: 13px 10px;
   color: #fff;
+  outline: 0;
 }
 
 .place:hover,
-.place:active,
-.place.focus {
+.place.focus,
+.place:active {
   background-color: aquamarine;
   color: #0278ae;
   cursor: pointer;
-  outline: 0;
   box-shadow: 0 0 2px 2px #61c0bf;
 }
 
@@ -164,16 +164,21 @@ ul {
   font-size: 1.2em;
   font-weight: 800;
   color: #0278ae;
-  margin: 15px;
+  margin: 10px;
 }
 
 .restaurant-address {
   color: #000;
 }
 
+.restaurant-cuisine {
+  margin-top: 10px;
+  color: #000;
+}
+
 .restaurant-rating {
   position: relative;
-  margin: 15px auto;
+  margin: 10px auto;
   background-color: #61c0bf;
   color: #fff;
   font-weight: 800;
@@ -187,6 +192,10 @@ ul {
   top: 9px;
   right: 8px;
   font-size: 1.1em;
+}
+
+.restaurant-cuisine span {
+  color: #0278ae;
 }
 
 

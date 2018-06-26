@@ -6,7 +6,7 @@ import clickedIcon from './images/Food_5.png'
 
 const Map = withScriptjs(withGoogleMap((props) =>
         <GoogleMap
-            defaultZoom={14}
+            defaultZoom={13}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
         >
@@ -16,7 +16,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
                     tabindex="0"
                     aria-label={place.restaurant.name}
                     position={{lat: parseFloat(place.restaurant.location.latitude), lng: parseFloat(place.restaurant.location.longitude)}}
-                    animation={2}
+                    defaultAnimation={2}
                     defaultIcon={icon}
                     key={place.restaurant.R.res_id}
                     isOpen={props.isOpen}
@@ -29,6 +29,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
                         <div className="info-window">
                             <div className="restaurant-name">{place.restaurant.name}</div>
                             <div className="restaurant-address">{place.restaurant.location.address}</div>
+                            <div className="restaurant-cuisine"><span>Cuisine:</span> {place.restaurant.cuisines}</div>
                             <div className="restaurant-rating">
                                 <div className="rating-number">{place.restaurant.user_rating.aggregate_rating}</div>
                             </div>
