@@ -24,9 +24,9 @@ class ListOfPlaces extends Component {
                                     aria-label={place.restaurant.name}
                                     tabIndex="0"
                                     ref={this.placeItem}
-                                    onClick={handleInfoWindowOpening}
+                                    onClick={() => handleInfoWindowOpening(place.restaurant.R.res_id)}
                                 >
-                                <span>{place.restaurant.name}</span>
+                                    <span>{place.restaurant.name}</span>
                                 </li>
                             )}
                         </ul>

@@ -6,8 +6,8 @@ import clickedIcon from './images/Food_5.png'
 
 const Map = withScriptjs(withGoogleMap((props) =>
         <GoogleMap
-            defaultZoom={13}
-            defaultCenter={{lat: 50.060544, lng: 19.941718}}
+            defaultZoom={14}
+            defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
         >
             {props.isMarkerShown && 
@@ -27,9 +27,11 @@ const Map = withScriptjs(withGoogleMap((props) =>
                         onCloseClick={() => props.handleInfoWindowClosing()}
                     >
                         <div className="info-window">
-                            <div>{place.restaurant.name}</div>
-                            <div>{place.restaurant.location.address}</div>
-                            <div>{place.restaurant.user_rating.aggregate_rating}</div>
+                            <div className="restaurant-name">{place.restaurant.name}</div>
+                            <div className="restaurant-address">{place.restaurant.location.address}</div>
+                            <div className="restaurant-rating">
+                                <div className="rating-number">{place.restaurant.user_rating.aggregate_rating}</div>
+                            </div>
                         </div>
                     </InfoWindow>
                 }

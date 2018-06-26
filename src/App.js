@@ -44,7 +44,7 @@ class App extends Component {
   }
 
   getData() {
-    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&radius=10000&collection_id=30', {
+    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&radius=8000&collection_id=30', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
