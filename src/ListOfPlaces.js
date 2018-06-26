@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 
 class ListOfPlaces extends Component {
+    constructor(props) {
+        super(props);
+        this.placeItem = React.createRef();
+    }
+
+    focus() {
+        this.placeItem.current.focus();
+    }
+
     render() {
-        const {places} = this.props
+        const {places, handleInfoWindowOpening} = this.props
             return (
                 <div className="places-list-container">
-                    <input id="filter-input" type="text" placeholder="Filter"/>
+                    <input id="filter-input" type="text" placeholder="Filter" ref={this.textInput}/>
                     {places && (
                         <ul>
                             {places.map((place) => 
-                                <li key={place.restaurant.res_id} className="place">{place.restaurant.name}</li>
+                                <li 
+                                    key={place.restaurant.R.res_id} 
+                                    className="place"
+                                    aria-label={place.restaurant.name}
+                                    tabIndex="0"
+                                    ref={this.placeItem}
+                                    onClick={handleInfoWindowOpening}
+                                >
+                                <span>{place.restaurant.name}</span>
+                                </li>
                             )}
                         </ul>
                     )}

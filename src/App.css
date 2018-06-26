@@ -23,7 +23,8 @@
   float: right;
 }
 .highlight {
-  color: #ffb6b9;
+  /* color: #ffb6b9; */
+  color: aquamarine
 }
 .main-content {
   display: block;
@@ -113,12 +114,14 @@
 
 .places-list-container {
   display: block;
+  position: absolute;
   background-color: #61c0bf;
-  height: 770px;
+  height: 100%;
   width: 270px;
   transition: all 0.2s ease;
   z-index: 100;
-  position: absolute;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 #filter-input {
@@ -132,10 +135,27 @@ ul {
   margin-top: 20px;
   padding: 0;
 }
+
 .place {
   list-style-type: none;
   margin: 0;
-  padding: 8px;
+  padding: 13px 10px;
   color: #fff;
 }
+
+.place:hover,
+.place:active,
+.place.focus {
+  background-color: aquamarine;
+  color: #0278ae;
+  font-weight: 800;
+  cursor: pointer;
+  outline: 0;
+  box-shadow: 0 0 2px 2px #61c0bf;
+}
+
+/* .place:focus {
+  box-shadow: 0 0 2px 2px #61c0bf;
+  outline: 0;
+} */
 

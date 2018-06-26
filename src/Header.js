@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Header extends Component {
     componentDidMount() {
         this.setState({
-            menuActive: false
+            menuIsActive: false
         })
     }
 
@@ -14,7 +14,7 @@ class Header extends Component {
     render() {
     
             let buttonClasses = ["hamburger", "hamburger--arrow"];
-            if (this.props.menuActive) {
+            if (this.props.menuIsActive) {
                 buttonClasses.push("is-active");
             }
     

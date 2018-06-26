@@ -13,8 +13,10 @@ class App extends Component {
   }
 
   state = {
-    menuActive: false,
+    menuIsActive: false,
     places: [],
+    infoWindowIsOpen: false,
+    placeId: ''
   }
 
   componentDidMount() {
@@ -22,13 +24,27 @@ class App extends Component {
 }
 
   handleMenuActivation() {
-  this.setState({
-    menuActive: !this.state.menuActive
-  })
+    this.setState({
+      menuIsActive: !this.state.menuIsActive
+    })
+  }
+
+  handleInfoWindowOpening = (id) => {
+    this.setState({
+      infoWindowIsOpen: true,
+      placeId: id
+    })
+    console.log(this.state.infoWindowIsOpen)
+  }
+
+  handleInfoWindowClosing = () => {
+    this.setState({
+      infoWindowIsOpen: false
+    })
   }
 
   getData() {
-    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&collection_id=30', {
+    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&radius=10000&collection_id=30', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -50,22 +66,27 @@ class App extends Component {
       <div className="App">
         <Header 
             handleMenuActivation = {this.handleMenuActivation}
-            menuActive = {this.state.menuActive}
+            menuActive = {this.state.menuIsActive}
         />
         <div className="main-content">
-          {this.state.menuActive && 
+          {this.state.menuIsActive && 
             <ListOfPlaces
                 places={this.state.places}
+                handleInfoWindowOpening={this.handleInfoWindowOpening}
             />
           }
             <Map
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `770px` }} />}
+                containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
                 places={this.state.places}
+                placeId={this.state.placeId}
+                isOpen={this.state.infoWindowIsOpen}
+                handleInfoWindowOpening={this.handleInfoWindowOpening}
+                handleInfoWindowClosing={this.handleInfoWindowClosing}
             />
         </div>
       </div>
