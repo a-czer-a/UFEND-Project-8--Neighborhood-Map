@@ -11,28 +11,53 @@ class ListOfPlaces extends Component {
         query: ''
     }
 
-
     focus() {
         this.placeItem.current.focus();
+    }
+
+    componentDidMount() {
+        console.log(this.props.filteredPlaces)
+        const {places} = this.props
+        this.setState({
+            filteredPlaces: places
+        })
     }
 
     updateQuery = (query) => {
         this.setState({
             query: query.trim()
         })
+        this.updateFilteredPlaces(query)
+
+    }
+
+    updateFilteredPlaces = (query) => {
+        const {places, updateFilteredPlaces} = this.props;
+        let searchResults
+
+        if (query) {
+            const match = new RegExp(escapeRegExp(query), 'i');
+            searchResults = places.filter((place) => match.test(place.restaurant.name))
+            updateFilteredPlaces(searchResults);
+        } else {
+            updateFilteredPlaces(places);
+
+        }
     }
 
     render() {
-        const {places, handleInfoWindowOpening} = this.props;
-        const {query} = this.state;
+        const {places, handleInfoWindowOpening, filteredPlaces} = this.props;
+        // const {query} = this.state;
 
-        let filteredPlaces
-        if (query) {
-            const match = new RegExp(escapeRegExp(query), 'i');
-            filteredPlaces = places.filter((place) => match.test(place.restaurant.name));
-        } else {
-            filteredPlaces = places;
-        }
+        // let filteredPlaces
+        // if (query) {
+        //     const match = new RegExp(escapeRegExp(query), 'i');
+        //     filteredPlaces = places.filter((place) => match.test(place.restaurant.name));
+        //     // updateSearchResults(filteredPlaces);
+        // } else {
+        //     filteredPlaces = places;
+        // }
+
             return (
                 <div className="places-list-container">
                     <input 
@@ -42,7 +67,7 @@ class ListOfPlaces extends Component {
                         ref={this.textInput}
                         onChange={(event) => this.updateQuery(event.target.value)}
                     />
-                    {places && (
+                    {filteredPlaces && (
                         <ul>
                             {filteredPlaces.map((place) => 
                                 <li 

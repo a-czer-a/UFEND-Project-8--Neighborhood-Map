@@ -15,7 +15,7 @@ class App extends Component {
   state = {
     menuIsActive: false,
     places: [],
-    // filteredPlaces: [],
+    filteredPlaces: [],
     infoWindowIsOpen: false,
     placeId: ''
   }
@@ -43,6 +43,12 @@ class App extends Component {
     })
   }
 
+  updateFilteredPlaces = (results) => {
+    this.setState({
+      filteredPlaces: results
+    })
+  }
+
   getData() {
     fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&radius=8000&collection_id=30', {
     method: 'GET',
@@ -54,14 +60,16 @@ class App extends Component {
     return response.json();
   }).then(returnedPlaces => {
     console.log(returnedPlaces.restaurants)
+    const filteredPlaces = returnedPlaces.restaurants
     const places = returnedPlaces.restaurants
     this.setState({
-      places
+      places, filteredPlaces
     })
   })
 }
 
   render() {
+    console.log(this.state.searchResults)
     return (
       <div className="App">
         <Header 
@@ -72,7 +80,9 @@ class App extends Component {
           {this.state.menuIsActive && 
             <ListOfPlaces
                 places={this.state.places}
-                handleInfoWindowOpening={this.handleInfoWindowOpening}
+                filteredPlaces={this.state.filteredPlaces}
+                handleInfoWindowOpening={this.handleInfoWindowOpening} 
+                updateFilteredPlaces={this.updateFilteredPlaces}       
             />
           }
             <Map
@@ -82,7 +92,7 @@ class App extends Component {
                 containerElement={<div style={{ height: `100vh` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
-                places={this.state.places}
+                filteredPlaces={this.state.filteredPlaces}
                 placeId={this.state.placeId}
                 isOpen={this.state.infoWindowIsOpen}
                 handleInfoWindowOpening={this.handleInfoWindowOpening}

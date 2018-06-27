@@ -9,9 +9,10 @@ const Map = withScriptjs(withGoogleMap((props) =>
             defaultZoom={13}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
+            /* ref={new google.maps.places.PlacesService()} */
         >
             {props.isMarkerShown && 
-                props.places.map(place => (
+                props.filteredPlaces.map(place => (
                 <Marker 
                     tabindex="0"
                     aria-label={place.restaurant.name}
