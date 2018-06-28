@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header'
+import Footer from './Footer'
 import ListOfPlaces from './ListOfPlaces'
 import Map from './Map' 
 import './App.css';
@@ -50,7 +51,7 @@ class App extends Component {
   }
 
   getData() {
-    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&lat=50.06465&lon=19.94498&radius=8000&collection_id=30', {
+    fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&start=0&count=15&lat=50.06465&lon=19.94498&radius=500&collection_id=30&sort=real_distance&order=desc', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -69,7 +70,6 @@ class App extends Component {
 }
 
   render() {
-    console.log(this.state.searchResults)
     return (
       <div className="App">
         <Header 
@@ -89,7 +89,7 @@ class App extends Component {
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `100vh` }} />}
+                containerElement={<div style={{ height: `calc(100vh - 150px)` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
                 filteredPlaces={this.state.filteredPlaces}
@@ -99,6 +99,7 @@ class App extends Component {
                 handleInfoWindowClosing={this.handleInfoWindowClosing}
             />
         </div>
+        <Footer/>
       </div>
     );
   }

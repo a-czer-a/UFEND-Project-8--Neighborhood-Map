@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FeederLogo from './images/feeder-logo.png'
 
 class Header extends Component {
     componentDidMount() {
@@ -28,7 +29,10 @@ class Header extends Component {
                             </span>
                         </button> 
                     </div>
-                    <h1 className="app-title">Child-friendly restaurants <span className="highlight">in Cracow</span></h1>               
+                    <div>
+                        <h1 className="app-title">Child-friendly restaurants <span className="highlight">in Cracow</span></h1>        
+                        <img src={FeederLogo} className="logo"></img>
+                    </div>       
                 </header>
             )
 

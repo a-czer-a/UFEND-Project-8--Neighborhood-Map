@@ -1,12 +1,16 @@
 import React from 'react'
-import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from "react-google-maps"
+import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps'
+import ReactStreetview from 'react-streetview'
 import mapStyles from './MapStyles.json'
 import icon from './images/Food_4.png'
 import clickedIcon from './images/Food_5.png'
 
-const Map = withScriptjs(withGoogleMap((props) =>
-        <GoogleMap
-            defaultZoom={13}
+const Map = withScriptjs(withGoogleMap((props) => {
+    const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
+
+    return (
+<GoogleMap
+            defaultZoom={14}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
             /* ref={new google.maps.places.PlacesService()} */
@@ -34,14 +38,26 @@ const Map = withScriptjs(withGoogleMap((props) =>
                             <div className="restaurant-rating">
                                 <div className="rating-number">{place.restaurant.user_rating.aggregate_rating}</div>
                             </div>
+                            {/* <div className="restaurant-image">
+                                <img src={place.restaurant.featured_image}></img>
+                            </div> */}
+                            <div className="restaurant-streetview">
+                                <ReactStreetview
+                                    apiKey={googleMapsApiKey}
+                                    streetViewPanoramaOptions={{
+                                        position: {lat: parseFloat(place.restaurant.location.latitude), lng: parseFloat(place.restaurant.location.longitude)},
+                                        pov: {heading: 100, pitch: 3},
+                                        zoom: 1
+                                    }}
+                                />
+                            </div>
                         </div>
                     </InfoWindow>
                 }
                 </Marker>
             ))}
         </GoogleMap>
-    ))
-
-
+    )}
+))
 
 export default Map

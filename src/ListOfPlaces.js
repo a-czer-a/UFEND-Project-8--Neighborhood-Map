@@ -47,23 +47,13 @@ class ListOfPlaces extends Component {
 
     render() {
         const {places, handleInfoWindowOpening, filteredPlaces} = this.props;
-        // const {query} = this.state;
-
-        // let filteredPlaces
-        // if (query) {
-        //     const match = new RegExp(escapeRegExp(query), 'i');
-        //     filteredPlaces = places.filter((place) => match.test(place.restaurant.name));
-        //     // updateSearchResults(filteredPlaces);
-        // } else {
-        //     filteredPlaces = places;
-        // }
 
             return (
                 <div className="places-list-container">
                     <input 
                         id="filter-input" 
                         type="text" 
-                        placeholder="Filter" 
+                        placeholder="Filter restaurants by name" 
                         ref={this.textInput}
                         onChange={(event) => this.updateQuery(event.target.value)}
                     />
