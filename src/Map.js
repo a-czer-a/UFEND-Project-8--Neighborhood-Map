@@ -2,11 +2,18 @@ import React from 'react'
 import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps'
 import ReactStreetview from 'react-streetview'
 import mapStyles from './MapStyles.json'
-import icon from './images/Food_4.png'
+import defaultIcon from './images/Food_4.png'
 import clickedIcon from './images/Food_5.png'
 
 const Map = withScriptjs(withGoogleMap((props) => {
     const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
+
+    // let icon
+    // if (!props.isOpen) {
+    //     icon = {defaultIcon}
+    // } else {
+    //     icon = {clickedIcon}
+    // }
 
     return (
 <GoogleMap
@@ -22,7 +29,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
                     aria-label={place.restaurant.name}
                     position={{lat: parseFloat(place.restaurant.location.latitude), lng: parseFloat(place.restaurant.location.longitude)}}
                     defaultAnimation={2}
-                    defaultIcon={icon}
+                    icon={defaultIcon}
                     key={place.restaurant.R.res_id}
                     isOpen={props.isOpen}
                     onClick={() => props.handleInfoWindowOpening(place.restaurant.R.res_id)}
