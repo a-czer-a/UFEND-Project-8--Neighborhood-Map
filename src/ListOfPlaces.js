@@ -58,7 +58,11 @@ class ListOfPlaces extends Component {
                         onChange={(event) => this.updateQuery(event.target.value)}
                     />
                     {filteredPlaces && (
-                        <ul>
+                        <ul 
+                            title="List of child-friendly restaurants in Cracow"
+                            aria-label="List of child-friendly restaurants in Cracow"
+                            tabIndex="0"
+                        >
                             {filteredPlaces.map((place) => 
                                 <li 
                                     key={place.restaurant.R.res_id} 

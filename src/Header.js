@@ -30,8 +30,8 @@ class Header extends Component {
                         </button> 
                     </div>
                     <div>
-                        <h1 className="app-title">Child-friendly restaurants <span className="highlight">in Cracow</span></h1>        
-                        <img src={FeederLogo} className="logo"></img>
+                        <h1 className="app-title" tabIndex="0">Child-friendly restaurants <span className="highlight">in Cracow</span></h1>        
+                        <img src={FeederLogo} alt="logo" className="logo"></img>
                     </div>       
                 </header>
             )

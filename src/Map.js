@@ -8,19 +8,15 @@ import clickedIcon from './images/Food_5.png'
 const Map = withScriptjs(withGoogleMap((props) => {
     const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
 
-    // let icon
-    // if (!props.isOpen) {
-    //     icon = {defaultIcon}
-    // } else {
-    //     icon = {clickedIcon}
-    // }
-
     return (
-<GoogleMap
+        <GoogleMap
             defaultZoom={14}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
-            /* ref={new google.maps.places.PlacesService()} */
+            onTilesLoaded={() => {
+                const accessibleMap = document.querySelector('iframe');
+                accessibleMap.setAttribute('title', 'Map of child-friendly restaurants in Cracow');
+            }}
         >
             {props.isMarkerShown && 
                 props.filteredPlaces.map(place => (
@@ -62,7 +58,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
                     </InfoWindow>
                 }
                 </Marker>
-            ))}
+                ))}
         </GoogleMap>
     )}
 ))
