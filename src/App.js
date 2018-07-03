@@ -40,7 +40,8 @@ class App extends Component {
 
   handleInfoWindowClosing = () => {
     this.setState({
-      infoWindowIsOpen: false
+      infoWindowIsOpen: false,
+      placeId: ''
     })
   }
 
@@ -60,7 +61,6 @@ class App extends Component {
   .then((response) => {
     return response.json();
   }).then(returnedPlaces => {
-    console.log(returnedPlaces.restaurants)
     const filteredPlaces = returnedPlaces.restaurants
     const places = returnedPlaces.restaurants
     this.setState({

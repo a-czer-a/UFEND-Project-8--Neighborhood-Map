@@ -173,10 +173,12 @@ ul {
 .info-window {
   width: auto;
   height: auto;
+  font-size: 1.1em;
+  color: #000;
 }
 
 .restaurant-name {
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: 800;
   color: #0278ae;
   margin: 10px;
@@ -186,30 +188,27 @@ ul {
   color: #000;
 }
 
-.restaurant-cuisine {
+.restaurant-cuisine,
+.restaurant-rating {
   margin-top: 10px;
   color: #000;
 }
 
 .restaurant-rating {
-  position: relative;
-  margin: 10px auto;
-  background-color: #61c0bf;
-  color: #fff;
+  margin-bottom: 15px;
+}
+
+.restaurant-zomato-link {
+  margin: 20px auto;
+}
+.restaurant-zomato-link a {
+  text-decoration: none; 
   font-weight: 800;
-  width: 35px;
-  height: 35px;
-  border-radius: 20px;
+  text-transform: uppercase;
+  color: #61c0bf;
 }
 
-.rating-number {
-  position: absolute;
-  top: 9px;
-  right: 8px;
-  font-size: 1.1em;
-}
-
-.restaurant-cuisine span {
+.info-window span {
   color: #0278ae;
 }
 

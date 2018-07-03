@@ -46,7 +46,7 @@ class ListOfPlaces extends Component {
     }
 
     render() {
-        const {places, handleInfoWindowOpening, filteredPlaces} = this.props;
+        const {handleInfoWindowOpening, filteredPlaces} = this.props;
 
             return (
                 <div className="places-list-container">
