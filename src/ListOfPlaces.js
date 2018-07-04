@@ -16,7 +16,6 @@ class ListOfPlaces extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.filteredPlaces)
         const {places} = this.props
         this.setState({
             filteredPlaces: places

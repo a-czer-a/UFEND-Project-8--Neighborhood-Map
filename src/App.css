@@ -246,3 +246,22 @@ ul {
 .attribution a:last-of-type {
   margin-right: 20px;
 }
+
+/* Error */
+
+.on-map-error {
+  height: calc(100vh - 150px);
+}
+
+.on-map-error p {
+position: absolute;
+right: 15px;
+}
+
+.on-map-error p:first-of-type {
+  padding-top: 30px;
+}
+
+.on-map-error p:last-of-type {
+  padding-top: 60px;
+}

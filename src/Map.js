@@ -7,23 +7,24 @@ import clickedIcon from './images/Food_6.png'
 
 const Map = withScriptjs(withGoogleMap((props) => {
     const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
-    let animationStyle = 2
-
+    
     return (
         <GoogleMap
+            ref={props.handleMapLoading}
             defaultZoom={14}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
             onTilesLoaded={() => {
                 const accessibleMap = document.querySelector('iframe');
                 accessibleMap.setAttribute('title', 'Map of child-friendly restaurants in Cracow');
+                accessibleMap.setAttribute('role', 'application');
             }}
         >
+        console.log(props)
             {props.isMarkerShown && 
                 props.filteredPlaces.map(place => {
                     const selectedMarkerId = place.restaurant.R.res_id
-                    let markerIcon
-
+                    let markerIcon, animationStyle
                     if (selectedMarkerId === props.placeId) {
                         markerIcon = clickedIcon
                         animationStyle = 1
