@@ -4,12 +4,19 @@ import FeederLogo from './images/feeder-logo.png'
 class Header extends Component {
     componentDidMount() {
         this.setState({
-            menuIsActive: false
+            menuIsActive: false,
+            ariaExpanded: true
         })
     }
 
     toggleMenu() {
         this.props.handleMenuActivation()
+        const menu = document.getElementById('menu-button');        
+        menu.setAttribute('aria-expanded', this.state.ariaExpanded);
+
+        this.setState({
+            ariaExpanded: !this.state.ariaExpanded
+        })
     }
     
     render() {
@@ -23,7 +30,7 @@ class Header extends Component {
                
                 <header className="app-header">
                     <div className="button-container">
-                        <button className={buttonClasses.join(' ')} type="button" onClick={this.toggleMenu.bind(this)}>
+                        <button id="menu-button" className={buttonClasses.join(' ')} type="button" onClick={this.toggleMenu.bind(this)} aria-expanded="false">
                             <span className="hamburger-box">
                                 <span className="hamburger-inner"></span>
                             </span>
