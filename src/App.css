@@ -125,7 +125,7 @@ body {
   display: block;
   position: absolute;
   background-color: #61c0bf;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 160px);
   width: 270px;
   margin-bottom: 0;
   transition: all 0.2s ease;
@@ -212,11 +212,6 @@ ul {
   color: #0278ae;
 }
 
-.restaurant-image img {
-  width: 250px;
-  height: auto;
-}
-
 .restaurant-streetview {
   margin: 0 auto;
   width: 250px;
@@ -228,29 +223,33 @@ ul {
 
 .attribution {
   width: 100%;
-  height: 20px;
+  height: 40px;
   background-color: #0278ae;
   color: #fff;
   margin: 0;
-  padding: 15px 0;
+  padding: 10px 0;
   text-align: right;
-  font-size: 0.9em;
+  font-size: 0.75em;
 }
 
+.attribution p {
+  margin: 0;
+  padding: 5px 10px 0 0;
+}
 .attribution a {
   text-decoration: none; 
   color: #a4cee2;
   font-weight: 800;
 }
 
-.attribution a:last-of-type {
+/* .attribution a:last-of-type {
   margin-right: 20px;
-}
+} */
 
 /* Error */
 
 .on-map-error {
-  height: calc(100vh - 150px);
+  height: calc(100vh - 160px);
 }
 
 .on-map-error p {

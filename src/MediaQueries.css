@@ -1,5 +1,35 @@
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 730px) {
     .is-active {
         margin-left: 0;
       }
+
+      .map-container {
+        height: calc(100vh - 160px);
+    }
+    
+}
+
+@media screen and (max-width: 550px) {
+    .app-header {
+        padding: 20px 5px;
+      }
+      
+    .app-title {
+        font-size: 1.1em;
+        padding: 8px;
+    }
+
+    .logo {
+display: none;
+    }
+
+    .info-window {
+        font-size: 1em;
+      }
+      
+    .restaurant-streetview {
+        width: 180px;
+        height: 180px;
+      }
+      
 }
