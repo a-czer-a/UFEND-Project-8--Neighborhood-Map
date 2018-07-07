@@ -5,12 +5,21 @@ import mapStyles from './MapStyles.json'
 import defaultIcon from './images/Food_4.png'
 import clickedIcon from './images/Food_6.png'
 
+
 const Map = withScriptjs(withGoogleMap((props) => {
     const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
-    
+    // const bounds = new window.google.maps.LatLngBounds()
+    // this.props.places.map((place, i) => {
+    //     bounds.extend(new window.google.maps.LatLng(
+    //       place.restaurant.location.lat,
+    //       place.restaurant.location.lng
+    //     ));
+    //   });
+
     return (
         <GoogleMap
-            ref={props.handleMapLoading}
+            ref={(map) => {props.handleMapLoading; map.fitBounds(bounds)}}
+            mapTypeId="roadmap"
             defaultZoom={14}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
             defaultOptions={{styles: mapStyles}}
@@ -19,8 +28,8 @@ const Map = withScriptjs(withGoogleMap((props) => {
                 accessibleMap.setAttribute('title', 'Map of child-friendly restaurants in Cracow');
                 accessibleMap.setAttribute('role', 'application');
             }}
+            onClick={props.onMarkerClick}
         >
-        console.log(props)
             {props.isMarkerShown && 
                 props.filteredPlaces.map(place => {
                     const selectedMarkerId = place.restaurant.R.res_id
@@ -32,17 +41,23 @@ const Map = withScriptjs(withGoogleMap((props) => {
                         markerIcon = defaultIcon
                         animationStyle = null
                     }
+                    const markerPosition = {lat: parseFloat(place.restaurant.location.latitude), lng: parseFloat(place.restaurant.location.longitude)}
                     return (
+
                         <Marker 
                             tabindex="0"
                             aria-label={place.restaurant.name}
-                            position={{lat: parseFloat(place.restaurant.location.latitude), lng: parseFloat(place.restaurant.location.longitude)}}
+                            position={markerPosition}
                             animation={animationStyle}
                             icon={markerIcon}
                             key={selectedMarkerId}
                             isOpen={props.isOpen}
-                            onClick={() => props.handleInfoWindowOpening(selectedMarkerId)}
+                            onClick={() => {
+                                props.handleInfoWindowOpening(selectedMarkerId); 
+                                {/* props.onMarkerClick(markerPosition) */}
+                            }}
                         >
+                        {console.log(markerPosition)}
                         {props.isOpen && selectedMarkerId === props.placeId &&
                             <InfoWindow
                                 onCloseClick={() => props.handleInfoWindowClosing()}

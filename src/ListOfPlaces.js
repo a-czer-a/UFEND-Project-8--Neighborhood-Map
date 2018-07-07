@@ -27,7 +27,6 @@ class ListOfPlaces extends Component {
             query: query.trim()
         })
         this.updateFilteredPlaces(query)
-
     }
 
     updateFilteredPlaces = (query) => {
@@ -45,10 +44,16 @@ class ListOfPlaces extends Component {
     }
 
     render() {
-        const {handleInfoWindowOpening, filteredPlaces} = this.props;
+        const {handleInfoWindowOpening, filteredPlaces, menuIsActive} = this.props;
 
+        let ariaHidden
+        if (menuIsActive) {
+            ariaHidden = "false"
+        } else {
+            ariaHidden = "true"
+        }
             return (
-                <div className="places-list-container">
+                <div className="places-list-container" aria-hidden="false">
                     <input 
                         id="filter-input" 
                         type="text" 
@@ -59,14 +64,20 @@ class ListOfPlaces extends Component {
                     {filteredPlaces && (
                         <ul 
                             title="List of child-friendly restaurants in Cracow"
+                            role="menu"
                             aria-label="List of child-friendly restaurants in Cracow"
+                            aria-controls="lp"
+                            aria-hidden={ariaHidden}
                             tabIndex="0"
                         >
                             {filteredPlaces.map((place) => 
                                 <li 
                                     key={place.restaurant.R.res_id} 
                                     className="place"
+                                    role="menuitem"
                                     aria-label={place.restaurant.name}
+                                    aria-controls="lp"
+                                    aria-hidden={ariaHidden}
                                     tabIndex="0"
                                     ref={this.placeItem}
                                     onClick={() => handleInfoWindowOpening(place.restaurant.R.res_id)}

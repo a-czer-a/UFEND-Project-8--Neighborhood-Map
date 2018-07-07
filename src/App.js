@@ -15,6 +15,7 @@ class App extends Component {
 
   state = {
     menuIsActive: false,
+    center: [],
     places: [],
     filteredPlaces: [],
     infoWindowIsOpen: false,
@@ -37,7 +38,7 @@ class App extends Component {
   handleInfoWindowOpening = (id) => {
     this.setState({
       infoWindowIsOpen: true,
-      placeId: id
+      placeId: id,
     })
   }
 
@@ -61,6 +62,11 @@ class App extends Component {
       })
     }
   }
+
+  onMarkerClick = (position) => 
+  this.setState({
+    center: position
+  })
 
   getData() {
     fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&start=0&count=15&lat=50.06465&lon=19.94498&radius=500&collection_id=30&sort=real_distance&order=desc', {
@@ -87,7 +93,7 @@ class App extends Component {
       <div className="App">
         <Header 
             handleMenuActivation = {this.handleMenuActivation}
-            menuActive = {this.state.menuIsActive}
+            menuIsActive = {this.state.menuIsActive}
         />
         <div className="main-content">
           {this.state.menuIsActive && 
@@ -95,7 +101,8 @@ class App extends Component {
                 places={this.state.places}
                 filteredPlaces={this.state.filteredPlaces}
                 handleInfoWindowOpening={this.handleInfoWindowOpening} 
-                updateFilteredPlaces={this.updateFilteredPlaces}       
+                updateFilteredPlaces={this.updateFilteredPlaces}   
+                menuIsActive={this.state.menuIsActive}    
             />
           }
           {this.state.mapIsLoaded ? (
@@ -103,16 +110,19 @@ class App extends Component {
                 isMarkerShown
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div style={{ height: `calc(100vh - 150px)` }} />}
+                containerElement={<div className="map-container" style={{ height: `calc(100vh - 160px)` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
                 zIndex={-100}
                 filteredPlaces={this.state.filteredPlaces}
+                places={this.state.places}
                 placeId={this.state.placeId}
                 map={this.state.map}
                 isOpen={this.state.infoWindowIsOpen}
                 handleInfoWindowOpening={this.handleInfoWindowOpening}
                 handleInfoWindowClosing={this.handleInfoWindowClosing}
                 handleMapLoading={this.handleMapLoading}
+                center={this.state.center}
+                onMarkerClick={this.handleMarkerClick}
             />
           ) : (
             <div className="on-map-error">
