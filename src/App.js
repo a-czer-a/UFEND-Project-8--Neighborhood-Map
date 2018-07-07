@@ -15,7 +15,6 @@ class App extends Component {
 
   state = {
     menuIsActive: false,
-    center: [],
     places: [],
     filteredPlaces: [],
     infoWindowIsOpen: false,
@@ -62,11 +61,6 @@ class App extends Component {
       })
     }
   }
-
-  onMarkerClick = (position) => 
-  this.setState({
-    center: position
-  })
 
   getData() {
     fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&start=0&count=15&lat=50.06465&lon=19.94498&radius=500&collection_id=30&sort=real_distance&order=desc', {
@@ -122,7 +116,6 @@ class App extends Component {
                 handleInfoWindowClosing={this.handleInfoWindowClosing}
                 handleMapLoading={this.handleMapLoading}
                 center={this.state.center}
-                onMarkerClick={this.handleMarkerClick}
             />
           ) : (
             <div className="on-map-error">

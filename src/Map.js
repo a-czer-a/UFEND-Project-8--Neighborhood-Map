@@ -8,17 +8,9 @@ import clickedIcon from './images/Food_6.png'
 
 const Map = withScriptjs(withGoogleMap((props) => {
     const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
-    // const bounds = new window.google.maps.LatLngBounds()
-    // this.props.places.map((place, i) => {
-    //     bounds.extend(new window.google.maps.LatLng(
-    //       place.restaurant.location.lat,
-    //       place.restaurant.location.lng
-    //     ));
-    //   });
-
     return (
         <GoogleMap
-            ref={(map) => {props.handleMapLoading; map.fitBounds(bounds)}}
+            ref={(map) => props.handleMapLoading}
             mapTypeId="roadmap"
             defaultZoom={14}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
@@ -54,10 +46,8 @@ const Map = withScriptjs(withGoogleMap((props) => {
                             isOpen={props.isOpen}
                             onClick={() => {
                                 props.handleInfoWindowOpening(selectedMarkerId); 
-                                {/* props.onMarkerClick(markerPosition) */}
                             }}
                         >
-                        {console.log(markerPosition)}
                         {props.isOpen && selectedMarkerId === props.placeId &&
                             <InfoWindow
                                 onCloseClick={() => props.handleInfoWindowClosing()}
