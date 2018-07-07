@@ -8,8 +8,7 @@ const Footer = () => {
                  <span className="highlight">|</span> Powered by 
                 <a href="www.zomato.com"> Zomato </a>
             </p>
-            <p>
-                Logo icon made by 
+            <p>Logo icon made by 
                 <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry"> Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">Flaticon</a>
             </p>
         </div>

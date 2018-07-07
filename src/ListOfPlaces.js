@@ -16,7 +16,7 @@ class ListOfPlaces extends Component {
     }
 
     componentDidMount() {
-        const {places} = this.props
+        const {places} = this.props;
         this.setState({
             filteredPlaces: places
         })
@@ -26,12 +26,12 @@ class ListOfPlaces extends Component {
         this.setState({
             query: query.trim()
         })
-        this.updateFilteredPlaces(query)
+        this.updateFilteredPlaces(query);
     }
 
     updateFilteredPlaces = (query) => {
         const {places, updateFilteredPlaces} = this.props;
-        let searchResults
+        let searchResults;
 
         if (query) {
             const match = new RegExp(escapeRegExp(query), 'i');
@@ -46,49 +46,50 @@ class ListOfPlaces extends Component {
     render() {
         const {handleInfoWindowOpening, filteredPlaces, menuIsActive} = this.props;
 
-        let ariaHidden
+        let ariaHidden;
         if (menuIsActive) {
-            ariaHidden = "false"
+            ariaHidden = "false";
         } else {
-            ariaHidden = "true"
+            ariaHidden = "true";
         }
-            return (
-                <div className="places-list-container" aria-hidden="false">
-                    <input 
-                        id="filter-input" 
-                        type="text" 
-                        placeholder="Filter restaurants by name" 
-                        ref={this.textInput}
-                        onChange={(event) => this.updateQuery(event.target.value)}
-                    />
-                    {filteredPlaces && (
-                        <ul 
-                            title="List of child-friendly restaurants in Cracow"
-                            role="menu"
-                            aria-label="List of child-friendly restaurants in Cracow"
-                            aria-controls="lp"
-                            aria-hidden={ariaHidden}
-                            tabIndex="0"
-                        >
-                            {filteredPlaces.map((place) => 
-                                <li 
-                                    key={place.restaurant.R.res_id} 
-                                    className="place"
-                                    role="menuitem"
-                                    aria-label={place.restaurant.name}
-                                    aria-controls="lp"
-                                    aria-hidden={ariaHidden}
-                                    tabIndex="0"
-                                    ref={this.placeItem}
-                                    onClick={() => handleInfoWindowOpening(place.restaurant.R.res_id)}
-                                >
-                                    <span>{place.restaurant.name}</span>
-                                </li>
-                            )}
-                        </ul>
-                    )}
-                </div>
-            )
+        
+        return (
+            <div className="places-list-container" aria-hidden="false">
+                <input 
+                    id="filter-input" 
+                    type="text" 
+                    placeholder="Filter restaurants by name" 
+                    ref={this.textInput}
+                    onChange={(event) => this.updateQuery(event.target.value)}
+                />
+                {filteredPlaces && (
+                    <ul 
+                        title="List of child-friendly restaurants in Cracow"
+                        role="menu"
+                        aria-label="List of child-friendly restaurants in Cracow"
+                        aria-controls="lp"
+                        aria-hidden={ariaHidden}
+                        tabIndex="0"
+                    >
+                        {filteredPlaces.map((place) => 
+                            <li 
+                                key={place.restaurant.R.res_id} 
+                                className="place"
+                                role="menuitem"
+                                aria-label={place.restaurant.name}
+                                aria-controls="lp"
+                                aria-hidden={ariaHidden}
+                                tabIndex="0"
+                                ref={this.placeItem}
+                                onClick={() => handleInfoWindowOpening(place.restaurant.R.res_id)}
+                            >
+                                <span>{place.restaurant.name}</span>
+                            </li>
+                        )}
+                    </ul>
+                )}
+            </div>
+        )
     }
 }
 

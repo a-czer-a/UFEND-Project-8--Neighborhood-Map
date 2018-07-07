@@ -7,11 +7,6 @@ body {
   text-align: center;
 }
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-} */
-
 .app-header {
   background-color: #0278ae;
   height: 60px;
@@ -143,7 +138,7 @@ body {
 }
 
 #filter-input:focus {
-  box-shadow: 2px 2px 10px 0 #0278ae;
+  box-shadow: 1px 1px 10px 0 #4386a5;
 }
 
 ul {
@@ -241,10 +236,6 @@ ul {
   color: #a4cee2;
   font-weight: 800;
 }
-
-/* .attribution a:last-of-type {
-  margin-right: 20px;
-} */
 
 /* Error */
 
