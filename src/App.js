@@ -19,13 +19,13 @@ class App extends Component {
     filteredPlaces: [],
     infoWindowIsOpen: false,
     placeId: '',
-    placesAreReady: false,
-    mapIsLoaded: true
+    googleMapIsLoaded: false,
+    isError: false
   }
 
   componentDidMount() {
     this.getData()
-}
+  }
 
   handleMenuActivation() {
     this.setState({
@@ -54,14 +54,6 @@ class App extends Component {
     })
   }
 
-  handleMapLoading = (loadedMap) => {
-    if (!loadedMap) {
-      this.setState({
-        mapIsLoaded: false
-      })
-    }
-  }
-
   getData() {
     fetch('https://developers.zomato.com/api/v2.1/search?entity_type=zone&start=0&count=15&lat=50.06465&lon=19.94498&radius=500&collection_id=30&sort=real_distance&order=desc', {
     method: 'GET',
@@ -75,14 +67,56 @@ class App extends Component {
     const filteredPlaces = returnedPlaces.restaurants
     const places = returnedPlaces.restaurants
     this.setState({
-      places, filteredPlaces, placesAreReady: true
+      places, filteredPlaces
     })
   }).catch((error) => {
-    console.log(`Places didn't load due to error: ${error}`)
+    console.log(`Places didn't load due to error: ${error}`);
+    this.setState({
+      isError: true
+    })
   })
 }
 
+  handleError = () => {
+    if (typeof window.google === 'object' && typeof window.google.maps === 'object') {
+      this.setState({
+        googleMapIsLoaded: true
+      })
+    } else {
+      this.setState({
+        googleMapIsLoaded: false,
+        isError: true
+      })
+    }
+    console.log(this.state.googleMapIsLoaded, this.state.isError)
+  }
+
   render() {
+    let content
+    if (!this.state.isError) {
+      content = <Map
+                    isMarkerShown
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div className="map-container" style={{ height: `calc(100vh - 160px)` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                    zIndex={-100}
+                    filteredPlaces={this.state.filteredPlaces}
+                    places={this.state.places}
+                    placeId={this.state.placeId}
+                    isOpen={this.state.infoWindowIsOpen}
+                    isError={this.state.isError}
+                    handleInfoWindowOpening={this.handleInfoWindowOpening}
+                    handleInfoWindowClosing={this.handleInfoWindowClosing}
+                    handleError={this.handleError}
+                />
+    } else {
+      content = <div className="on-map-error">
+                    <p>Data cannot be loaded.</p>
+                    <p>Please, check your network connection or reload the app.</p>
+                </div>
+    }
+
     return (
       <div className="App">
         <Header 
@@ -99,34 +133,11 @@ class App extends Component {
                 menuIsActive={this.state.menuIsActive}    
             />
           }
-          {this.state.mapIsLoaded ? (
-            <Map
-                isMarkerShown
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
-                loadingElement={<div style={{ height: `100%` }} />}
-                containerElement={<div className="map-container" style={{ height: `calc(100vh - 160px)` }} />}
-                mapElement={<div style={{ height: `100%` }} />}
-                zIndex={-100}
-                filteredPlaces={this.state.filteredPlaces}
-                places={this.state.places}
-                placeId={this.state.placeId}
-                map={this.state.map}
-                isOpen={this.state.infoWindowIsOpen}
-                handleInfoWindowOpening={this.handleInfoWindowOpening}
-                handleInfoWindowClosing={this.handleInfoWindowClosing}
-                handleMapLoading={this.handleMapLoading}
-                center={this.state.center}
-            />
-          ) : (
-            <div className="on-map-error">
-              <p>Google map cannot be loaded.</p>
-              <p>Please, check your network connection or reload the app.</p>
-            </div>
-          )}
+          {content}
         </div>
         <Footer/>
       </div>
-    );
+    )
   }
 }
 

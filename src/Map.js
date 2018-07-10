@@ -10,7 +10,6 @@ const Map = withScriptjs(withGoogleMap((props) => {
     const googleMapsApiKey = 'AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q';
     return (
         <GoogleMap
-            ref={(map) => props.handleMapLoading}
             mapTypeId="roadmap"
             defaultZoom={14}
             defaultCenter={{lat: 50.061897, lng: 19.936756}}
@@ -19,8 +18,8 @@ const Map = withScriptjs(withGoogleMap((props) => {
                 const accessibleMap = document.querySelector('iframe');
                 accessibleMap.setAttribute('title', 'Map of child-friendly restaurants in Cracow');
                 accessibleMap.setAttribute('role', 'application');
+                props.handleError();
             }}
-            onClick={props.onMarkerClick}
         >
             {props.isMarkerShown && 
                 props.filteredPlaces.map(place => {

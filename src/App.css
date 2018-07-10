@@ -244,8 +244,8 @@ ul {
 }
 
 .on-map-error p {
-position: absolute;
-right: 15px;
+  position: absolute;
+  right: 15px;
 }
 
 .on-map-error p:first-of-type {
@@ -254,4 +254,12 @@ right: 15px;
 
 .on-map-error p:last-of-type {
   padding-top: 60px;
+}
+
+/* Loader */
+
+.loader {
+  height: calc(100vh - 290px);
+  margin: 0 auto;
+  padding-top: 130px;
 }
