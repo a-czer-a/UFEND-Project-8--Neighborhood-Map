@@ -35,7 +35,7 @@ body {
   display: block;
 }
 
-/* Hamburger menu */
+/* Hamburger menu (https://jonsuh.com/hamburgers/)*/
 
 .button-container {
   position: relative;
@@ -254,12 +254,4 @@ ul {
 
 .on-map-error p:last-of-type {
   padding-top: 60px;
-}
-
-/* Loader */
-
-.loader {
-  height: calc(100vh - 290px);
-  margin: 0 auto;
-  padding-top: 130px;
 }

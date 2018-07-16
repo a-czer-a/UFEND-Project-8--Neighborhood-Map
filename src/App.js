@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header'
 import Footer from './Footer'
 import ListOfPlaces from './ListOfPlaces'
-import Map from './Map' 
+import MapContainer from './MapContainer' 
 import './App.css';
 import './MediaQueries.css'
 
@@ -19,12 +19,11 @@ class App extends Component {
     filteredPlaces: [],
     infoWindowIsOpen: false,
     placeId: '',
-    googleMapIsLoaded: false,
-    isError: false
+    isError: false,
   }
 
   componentDidMount() {
-    this.getData()
+    this.getData();
   }
 
   handleMenuActivation() {
@@ -77,35 +76,22 @@ class App extends Component {
   })
 }
 
-  handleError = () => {
-    if (typeof window.google === 'object' && typeof window.google.maps === 'object') {
-      this.setState({
-        googleMapIsLoaded: true
-      })
-    } else {
-      this.setState({
-        googleMapIsLoaded: false,
-        isError: true
-      })
-    }
-    console.log(this.state.googleMapIsLoaded, this.state.isError)
-  }
-
   render() {
+    const {filteredPlaces, places, placeId, infoWindowIsOpen, isError, menuIsActive} = this.state;
     let content
     if (!this.state.isError) {
-      content = <Map
+      content = <MapContainer
                     isMarkerShown
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUdj7ALkguCKmY7Uj3K-7V-8NHgouz3Q&v=3.exp&libraries=geometry,drawing,places"
                     loadingElement={<div style={{ height: `100%` }} />}
-                    containerElement={<div className="map-container" style={{ height: `calc(100vh - 160px)` }} />}
+                    containerElement={<div id="map" className="map-container" style={{ height: `calc(100vh - 160px)` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
                     zIndex={-100}
-                    filteredPlaces={this.state.filteredPlaces}
-                    places={this.state.places}
-                    placeId={this.state.placeId}
-                    isOpen={this.state.infoWindowIsOpen}
-                    isError={this.state.isError}
+                    filteredPlaces={filteredPlaces}
+                    places={places}
+                    placeId={placeId}
+                    isOpen={infoWindowIsOpen}
+                    isError={isError}
                     handleInfoWindowOpening={this.handleInfoWindowOpening}
                     handleInfoWindowClosing={this.handleInfoWindowClosing}
                     handleError={this.handleError}
@@ -121,16 +107,16 @@ class App extends Component {
       <div className="App">
         <Header 
             handleMenuActivation = {this.handleMenuActivation}
-            menuIsActive = {this.state.menuIsActive}
+            menuIsActive = {menuIsActive}
         />
         <div className="main-content">
-          {this.state.menuIsActive && 
+          {menuIsActive && 
             <ListOfPlaces
-                places={this.state.places}
-                filteredPlaces={this.state.filteredPlaces}
+                places={places}
+                filteredPlaces={filteredPlaces}
                 handleInfoWindowOpening={this.handleInfoWindowOpening} 
                 updateFilteredPlaces={this.updateFilteredPlaces}   
-                menuIsActive={this.state.menuIsActive}    
+                menuIsActive={menuIsActive}    
             />
           }
           {content}
