@@ -10,7 +10,7 @@ class Header extends Component {
     }
 
     toggleMenu() {
-        this.props.handleMenuActivation()
+        this.props.handleMenuActivation();
         const menu = document.getElementById('menu-button');        
         menu.setAttribute('aria-expanded', this.state.ariaExpanded);
         this.setState({

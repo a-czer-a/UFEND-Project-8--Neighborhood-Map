@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import {GoogleMap, Marker, InfoWindow} from 'react-google-maps'
-import ReactStreetview from 'react-streetview'
-import mapStyles from './MapStyles.json'
-import defaultIcon from './images/Food_4.png'
-import clickedIcon from './images/Food_6.png'
+import React, {Component} from 'react';
+import {GoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import ReactStreetview from 'react-streetview';
+import mapStyles from './MapStyles.json';
+import defaultIcon from './images/Food_4.png';
+import clickedIcon from './images/Food_6.png';
 
 class Map extends Component {
     
@@ -41,11 +41,11 @@ class Map extends Component {
                         const selectedMarkerId = place.restaurant.R.res_id
                         let markerIcon, animationStyle
                         if (selectedMarkerId === placeId) {
-                            markerIcon = clickedIcon
-                            animationStyle = 1
+                            markerIcon = clickedIcon;
+                            animationStyle = 1;
                         } else {
-                            markerIcon = defaultIcon
-                            animationStyle = null
+                            markerIcon = defaultIcon;
+                            animationStyle = null;
                         }
                         const markerPosition = {lat: parseFloat(place.restaurant.location.latitude), lng: parseFloat(place.restaurant.location.longitude)}
                         

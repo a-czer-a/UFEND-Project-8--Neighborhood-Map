@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import escapeRegExp from 'escape-string-regexp'
+import React, {Component} from 'react';
+import escapeRegExp from 'escape-string-regexp';
 
 class ListOfPlaces extends Component {
     constructor(props) {
